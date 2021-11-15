@@ -135,6 +135,9 @@ public class MainActivity extends AppCompatActivity
             Intent i = new Intent(this, SettingsActivity.class);
             startActivityForResult(i, RESULT_PREFS_UPDATED);
             return true;
+        } else if (id == R.id.qr_code) {
+            //showQR();
+            return true;
         } else if (id == R.id.menu_about) {
             showAbout();
             return true;

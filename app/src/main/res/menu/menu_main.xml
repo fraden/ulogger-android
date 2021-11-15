@@ -29,6 +29,11 @@
         android:title="@string/clear"
         app:showAsAction="ifRoom" />
     <item
+        android:id="@+id/qr_code"
+        android:icon="@drawable/ic_photo_camera_gray_24dp"
+        android:title="QR Code"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/menu_about"
         android:icon="@drawable/ic_info_white_24dp"
         android:tint="@android:color/background_light"

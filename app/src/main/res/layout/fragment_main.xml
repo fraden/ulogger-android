@@ -46,6 +46,15 @@
                 android:textStyle="bold" />
 
             <Button
+                android:id="@+id/qrCode2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/button_background"
+                android:drawableTop="@drawable/ic_photo_camera_gray_24dp"
+                android:text="QR" />
+
+            <Button
                 android:id="@+id/buttonUpload"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"

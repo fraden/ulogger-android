@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity
 
     private final static int RESULT_PREFS_UPDATED = 1;
     private final static int RESULT_GPX_EXPORT = 2;
+    private final static int RESULT_QR_CODE = 3;
     public final static String UPDATED_PREFS = "extra_updated_prefs";
 
     public String preferenceHost;
@@ -135,8 +136,9 @@ public class MainActivity extends AppCompatActivity
             Intent i = new Intent(this, SettingsActivity.class);
             startActivityForResult(i, RESULT_PREFS_UPDATED);
             return true;
-        } else if (id == R.id.qr_code) {
-            //showQR();
+        } else if (id == R.id.qrCode) {
+            Intent i = new Intent(this, SettingsActivity.class);
+            startActivityForResult(i, RESULT_QR_CODE);
             return true;
         } else if (id == R.id.menu_about) {
             showAbout();
@@ -193,6 +195,8 @@ public class MainActivity extends AppCompatActivity
                 intent.putExtra(UPDATED_PREFS, true);
                 startService(intent);
             }
+        } else if (requestCode == RESULT_QR_CODE){
+            // todo: add
         } else if (requestCode == RESULT_GPX_EXPORT && resultCode == Activity.RESULT_OK) {
             if (data != null) {
                 Intent intent = new Intent(MainActivity.this, GpxExportService.class);

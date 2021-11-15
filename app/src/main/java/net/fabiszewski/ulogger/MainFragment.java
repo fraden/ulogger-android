@@ -24,6 +24,8 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -100,8 +102,10 @@ public class MainFragment extends Fragment {
                              Bundle savedInstanceState) {
         ScrollView layout = (ScrollView) inflater.inflate(R.layout.fragment_main, container, false);
 
+
         switchLogger = layout.findViewById(R.id.switchLogger);
         Button buttonWaypoint = layout.findViewById(R.id.buttonWaypoint);
+        Button buttonQR = layout.findViewById(R.id.qrCode2);
         Button buttonUpload = layout.findViewById(R.id.buttonUpload);
         Button buttonNewTrack = layout.findViewById(R.id.buttonNewTrack);
         buttonShare = layout.findViewById(R.id.buttonShare);
@@ -114,6 +118,7 @@ public class MainFragment extends Fragment {
 
         switchLogger.setOnCheckedChangeListener(this::toggleLogging);
         buttonWaypoint.setOnClickListener(this::addWaypoint);
+        buttonQR.setOnClickListener(this::addQR);
         buttonUpload.setOnClickListener(this::uploadData);
         buttonNewTrack.setOnClickListener(this::newTrack);
         buttonShare.setOnClickListener(this::shareURL);
@@ -224,6 +229,23 @@ public class MainFragment extends Fragment {
     private void addWaypoint(View view) {
         if (DbAccess.getTrackName(view.getContext()) != null) {
             WaypointFragment fragment = WaypointFragment.newInstance();
+            FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_placeholder, fragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        } else {
+            if (mListener != null) {
+                mListener.showNoTrackWarning();
+            }
+        }
+    }
+
+    /**
+     * Start QR activity
+     */
+    private void addQR(View view) {
+        if (DbAccess.getTrackName(view.getContext()) != null) {
+            QRFragment fragment = QRFragment.newInstance();
             FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_placeholder, fragment);
             transaction.addToBackStack(null);
